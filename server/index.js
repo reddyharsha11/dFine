@@ -21,13 +21,26 @@ const settingsRoutes = require('./routes/settingsRoutes');
 
 const app = express();
 
-void connectDB().then((conn) => {
-  if (conn) {
-    return ensureAdminUser().catch((error) => {
-      console.error('[admin] Bootstrap failed:', error.message);
-    });
+let adminBootstrapped = false;
+
+app.use(async (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    try {
+      const conn = await connectDB();
+      if (conn && !adminBootstrapped) {
+        adminBootstrapped = true;
+        // Run bootstrap in background
+        ensureAdminUser().catch((error) => {
+          console.error('[admin] Bootstrap failed:', error.message);
+        });
+      }
+      next();
+    } catch (err) {
+      next(err);
+    }
+  } else {
+    next();
   }
-  return null;
 });
 
 const clientOrigins = [
