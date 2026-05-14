@@ -96,19 +96,24 @@ if (fs.existsSync(distIndex)) {
 }
 
 const PORT = Number(process.env.PORT) || 5000;
-const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.error(
-      `Port ${PORT} is already in use (another server instance is probably still running). ` +
-        'Close that terminal, stop the other process, or set PORT to a free port in server/.env. ' +
-        'On Windows: netstat -ano | findstr :' +
-        PORT
-    );
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(
+        `Port ${PORT} is already in use (another server instance is probably still running). ` +
+          'Close that terminal, stop the other process, or set PORT to a free port in server/.env. ' +
+          'On Windows: netstat -ano | findstr :' +
+          PORT
+      );
+      process.exit(1);
+      return;
+    }
+    console.error(err);
     process.exit(1);
-    return;
-  }
-  console.error(err);
-  process.exit(1);
-});
+  });
+}
+
+module.exports = app;
