@@ -15,6 +15,14 @@
       rel="stylesheet"
     />
     <title>dFine Dental</title>
+    <script>
+      // Suppress "Unchecked runtime.lastError" console noise caused by browser extensions
+      window.addEventListener('error', (event) => {
+        if (event.message && event.message.includes('Unchecked runtime.lastError')) {
+          event.stopImmediatePropagation();
+        }
+      }, true);
+    </script>
   </head>
   <body>
     <div id="root"></div>

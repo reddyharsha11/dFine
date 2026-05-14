@@ -19,11 +19,7 @@
       "destination": "server/index.js"
     },
     {
-      "source": "/((?!api/).*)",
-      "destination": "/$1"
-    },
-    {
-      "source": "/((?!api/).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
