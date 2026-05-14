@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import { api, getErrorMessage } from '../utils/api'
 import { useAuth } from '../hooks/AuthContext'
 import { CLINIC } from '../utils/constants'
+import { createLocalAdminToken, isLocalAdminLogin } from '../utils/localAdmin'
 
 export default function AdminLogin() {
   const { isAuthenticated, login } = useAuth()
@@ -26,6 +27,12 @@ export default function AdminLogin() {
       toast.success('Welcome back')
       navigate('/admin/dashboard')
     } catch (error) {
+      if (isLocalAdminLogin(email, password)) {
+        login(createLocalAdminToken())
+        toast.success('Welcome back')
+        navigate('/admin/dashboard')
+        return
+      }
       toast.error(getErrorMessage(error, 'Login failed'))
     } finally {
       setBusy(false)
@@ -79,7 +86,7 @@ export default function AdminLogin() {
           </button>
 
           <p className="mt-4 text-center text-xs text-ink-muted">
-            Use the seeded admin credentials from the backend environment.
+            Use the clinic admin credentials.
           </p>
         </form>
       </div>

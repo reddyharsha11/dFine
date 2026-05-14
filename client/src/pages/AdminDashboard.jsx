@@ -5,11 +5,13 @@ import toast from 'react-hot-toast'
 import { api, getErrorMessage } from '../utils/api'
 import { useAuth } from '../hooks/AuthContext'
 import { CLINIC, formatIndianDate } from '../utils/constants'
+import { getFallbackDashboardData, isLocalAdminToken } from '../utils/localAdmin'
 
 const tabs = ['Overview', 'Appointments', 'Reviews', 'Gallery', 'Messages', 'Settings']
 
 export default function AdminDashboard() {
-  const { isAuthenticated, logout } = useAuth()
+  const { isAuthenticated, logout, token } = useAuth()
+  const localAdmin = isLocalAdminToken(token)
   const [activeTab, setActiveTab] = useState('Overview')
   const [loading, setLoading] = useState(true)
   const [stats, setStats] = useState(null)
@@ -24,8 +26,25 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (!isAuthenticated) return
+
+    function loadFallbackData() {
+      const fallback = getFallbackDashboardData()
+      setStats(fallback.stats)
+      setAppointments(fallback.appointments)
+      setReviews(fallback.reviews)
+      setGallery(fallback.gallery)
+      setMessages(fallback.messages)
+      setSettingsDraft(fallback.settings)
+    }
+
     async function load() {
       setLoading(true)
+      if (localAdmin) {
+        loadFallbackData()
+        setLoading(false)
+        return
+      }
+
       try {
         const [statsRes, appointmentsRes, reviewsRes, galleryRes, messagesRes, settingsRes] = await Promise.all([
           api.get('appointments/stats'),
@@ -42,13 +61,14 @@ export default function AdminDashboard() {
         setMessages(messagesRes.data.data || [])
         setSettingsDraft(settingsRes.data.data)
       } catch (error) {
+        loadFallbackData()
         toast.error(getErrorMessage(error, 'Could not load dashboard'))
       } finally {
         setLoading(false)
       }
     }
     load()
-  }, [isAuthenticated])
+  }, [isAuthenticated, localAdmin])
 
   const filteredAppointments = useMemo(() => {
     const query = appointmentQuery.trim().toLowerCase()
@@ -63,6 +83,12 @@ export default function AdminDashboard() {
   }
 
   async function setAppointmentStatus(id, status) {
+    if (localAdmin) {
+      setAppointments((current) => current.map((item) => (item._id === id ? { ...item, status } : item)))
+      toast.success('Appointment updated')
+      return
+    }
+
     try {
       await api.put(`appointments/${id}`, { status })
       setAppointments((current) => current.map((item) => (item._id === id ? { ...item, status } : item)))
@@ -73,6 +99,13 @@ export default function AdminDashboard() {
   }
 
   async function toggleReview(review) {
+    if (localAdmin) {
+      setReviews((current) =>
+        current.map((item) => (item._id === review._id ? { ...item, isVisible: !item.isVisible } : item))
+      )
+      return
+    }
+
     try {
       const { data } = await api.put(`reviews/${review._id}`, { isVisible: !review.isVisible })
       setReviews((current) => current.map((item) => (item._id === review._id ? data.data : item)))
@@ -83,6 +116,13 @@ export default function AdminDashboard() {
 
   async function submitReview(event) {
     event.preventDefault()
+    if (localAdmin) {
+      setReviews((current) => [{ ...newReview, _id: `local-review-${Date.now()}`, isVisible: true }, ...current])
+      setNewReview({ patientName: '', rating: 5, reviewText: '', source: 'Google' })
+      toast.success('Review added')
+      return
+    }
+
     try {
       const { data } = await api.post('reviews', newReview)
       setReviews((current) => [data.data, ...current])
@@ -94,6 +134,12 @@ export default function AdminDashboard() {
   }
 
   async function deleteReview(id) {
+    if (localAdmin) {
+      setReviews((current) => current.filter((item) => item._id !== id))
+      toast.success('Review deleted')
+      return
+    }
+
     try {
       await api.delete(`reviews/${id}`)
       setReviews((current) => current.filter((item) => item._id !== id))
@@ -105,6 +151,13 @@ export default function AdminDashboard() {
 
   async function submitGallery(event) {
     event.preventDefault()
+    if (localAdmin) {
+      setGallery((current) => [{ ...newGallery, _id: `local-gallery-${Date.now()}` }, ...current])
+      setNewGallery({ title: '', imageUrl: '', category: 'clinic', description: '' })
+      toast.success('Gallery item added')
+      return
+    }
+
     try {
       const { data } = await api.post('gallery', newGallery)
       setGallery((current) => [data.data, ...current])
@@ -116,6 +169,12 @@ export default function AdminDashboard() {
   }
 
   async function deleteGallery(id) {
+    if (localAdmin) {
+      setGallery((current) => current.filter((item) => item._id !== id))
+      toast.success('Gallery item removed')
+      return
+    }
+
     try {
       await api.delete(`gallery/${id}`)
       setGallery((current) => current.filter((item) => item._id !== id))
@@ -126,6 +185,13 @@ export default function AdminDashboard() {
   }
 
   async function markMessageRead(message) {
+    if (localAdmin) {
+      setMessages((current) =>
+        current.map((item) => (item._id === message._id ? { ...item, isRead: !item.isRead } : item))
+      )
+      return
+    }
+
     try {
       const { data } = await api.put(`contact/${message._id}`, { isRead: !message.isRead })
       setMessages((current) => current.map((item) => (item._id === message._id ? data.data : item)))
@@ -135,6 +201,12 @@ export default function AdminDashboard() {
   }
 
   async function deleteMessage(id) {
+    if (localAdmin) {
+      setMessages((current) => current.filter((item) => item._id !== id))
+      toast.success('Message deleted')
+      return
+    }
+
     try {
       await api.delete(`contact/${id}`)
       setMessages((current) => current.filter((item) => item._id !== id))
@@ -146,6 +218,11 @@ export default function AdminDashboard() {
 
   async function saveSettings(event) {
     event.preventDefault()
+    if (localAdmin) {
+      toast.success('Settings saved for this session')
+      return
+    }
+
     try {
       const { data } = await api.put('settings', settingsDraft)
       setSettingsDraft(data.data)
