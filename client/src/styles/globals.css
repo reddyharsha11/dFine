@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=DM+Sans:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
+
+@import 'react-datepicker/dist/react-datepicker.css';
+@import 'yet-another-react-lightbox/styles.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-body bg-surface-soft text-ink-secondary antialiased;
+  }
+}
+
+.react-datepicker {
+  @apply font-body rounded-xl border border-primary/20 shadow-teal-md;
+}
+
+.react-datepicker__header {
+  @apply bg-primary-pale border-primary/20 rounded-t-xl;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  @apply bg-accent text-white rounded-lg;
+}
