@@ -8,25 +8,25 @@ const fallbackGallery = [
     _id: 'fallback-1',
     title: 'Smile Designing',
     imageUrl:
-      'https://images.unsplash.com/photo-1606811971618-4486e7c7d8b?w=900&q=80&auto=format&fit=crop',
+      'https://picsum.photos/seed/smile1/900/600',
   },
   {
     _id: 'fallback-2',
     title: 'Modern Operatory',
     imageUrl:
-      'https://images.unsplash.com/photo-1588776814546-1ffcef47235e?w=900&q=80&auto=format&fit=crop',
+      'https://picsum.photos/seed/clinic1/900/600',
   },
   {
     _id: 'fallback-3',
     title: 'Teeth Alignment',
     imageUrl:
-      'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=900&q=80&auto=format&fit=crop',
+      'https://picsum.photos/seed/teeth1/900/600',
   },
   {
     _id: 'fallback-4',
     title: 'Clinic Ambience',
     imageUrl:
-      'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=80&auto=format&fit=crop',
+      'https://picsum.photos/seed/ambience1/900/600',
   },
 ]
 
