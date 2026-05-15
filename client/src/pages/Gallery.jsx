@@ -4,6 +4,44 @@ import Lightbox from 'yet-another-react-lightbox'
 import { api } from '../utils/api'
 import { CLINIC } from '../utils/constants'
 
+const fallbackGallery = [
+  {
+    _id: 'fallback-1',
+    category: 'before-after',
+    title: 'Smile Designing',
+    imageUrl:
+      'https://images.unsplash.com/photo-1606811971618-4486e7c7d8b?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    _id: 'fallback-2',
+    category: 'clinic',
+    title: 'Modern Operatory',
+    imageUrl:
+      'https://images.unsplash.com/photo-1588776814546-1ffcef47235e?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    _id: 'fallback-3',
+    category: 'before-after',
+    title: 'Teeth Alignment',
+    imageUrl:
+      'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    _id: 'fallback-4',
+    category: 'clinic',
+    title: 'Clinic Ambience',
+    imageUrl:
+      'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    _id: 'fallback-5',
+    category: 'team',
+    title: 'Expert Team',
+    imageUrl:
+      'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=900&q=80&auto=format&fit=crop',
+  },
+]
+
 const tabs = [
   { id: 'all', label: 'All', filter: () => true },
   { id: 'before-after', label: 'Before & After', filter: (item) => item.category === 'before-after' },
@@ -24,10 +62,12 @@ export default function GalleryPage() {
       .catch(() => setItems([]))
   }, [])
 
+  const displayItems = useMemo(() => (items.length ? items : fallbackGallery), [items])
+
   const filtered = useMemo(() => {
     const matcher = tabs.find((item) => item.id === tab)?.filter || (() => true)
-    return items.filter(matcher)
-  }, [items, tab])
+    return displayItems.filter(matcher)
+  }, [displayItems, tab])
 
   const slides = useMemo(
     () =>
@@ -72,40 +112,46 @@ export default function GalleryPage() {
           ))}
         </div>
 
-        <div className="mt-8 columns-1 gap-4 md:columns-2 lg:columns-3">
-          {filtered.map((item, itemIndex) => (
-            <button
-              key={item._id}
-              type="button"
-              className="group mb-4 block w-full break-inside-avoid overflow-hidden rounded-[24px] border border-primary/10 bg-white text-left shadow-teal-sm"
-              onClick={() => {
-                setIndex(itemIndex)
-                setOpen(true)
-              }}
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={item.imageUrl}
-                  alt={item.title || 'Gallery image'}
-                  className="w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-surface-dark/0 text-white opacity-0 transition group-hover:bg-surface-dark/35 group-hover:opacity-100">
-                  <span className="rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold">
-                    View
-                  </span>
+        {filtered.length === 0 ? (
+          <div className="mt-12 py-10 text-center text-ink-secondary">
+            <p>No images found in this category.</p>
+          </div>
+        ) : (
+          <div className="mt-8 columns-1 gap-4 md:columns-2 lg:columns-3">
+            {filtered.map((item, itemIndex) => (
+              <button
+                key={item._id}
+                type="button"
+                className="group mb-4 block w-full break-inside-avoid overflow-hidden rounded-[24px] border border-primary/10 bg-white text-left shadow-teal-sm"
+                onClick={() => {
+                  setIndex(itemIndex)
+                  setOpen(true)
+                }}
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={item.imageUrl}
+                    alt={item.title || 'Gallery image'}
+                    className="w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-surface-dark/0 text-white opacity-0 transition group-hover:bg-surface-dark/35 group-hover:opacity-100">
+                    <span className="rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold">
+                      View
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="px-4 py-4">
-                <p className="text-xs font-bold uppercase tracking-wide text-accent">{item.category}</p>
-                <p className="mt-1 font-heading text-base font-bold text-ink-primary">{item.title}</p>
-                {item.description ? (
-                  <p className="mt-2 text-sm text-ink-secondary">{item.description}</p>
-                ) : null}
-              </div>
-            </button>
-          ))}
-        </div>
+                <div className="px-4 py-4">
+                  <p className="text-xs font-bold uppercase tracking-wide text-accent">{item.category}</p>
+                  <p className="mt-1 font-heading text-base font-bold text-ink-primary">{item.title}</p>
+                  {item.description ? (
+                    <p className="mt-2 text-sm text-ink-secondary">{item.description}</p>
+                  ) : null}
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
       </section>
 
       <Lightbox
