@@ -18,7 +18,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const panelId = useId()
   const isHome = pathname === '/'
-  const solid = !isHome || scrolled || open
+  const solid = (!isHome || scrolled) && !open
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -54,7 +54,7 @@ export function Navbar() {
           solid ? 'bg-white/95 shadow-teal-sm backdrop-blur-md' : 'bg-transparent'
         }`}
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+        <div className="relative z-50 mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
           <Link to="/" className="flex items-end gap-2">
             <span className={`font-display text-3xl font-bold ${solid ? 'text-primary' : 'text-white'}`}>
               dFine
