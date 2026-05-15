@@ -3,44 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import Lightbox from 'yet-another-react-lightbox'
 import { api } from '../utils/api'
 import { CLINIC } from '../utils/constants'
-
-const fallbackGallery = [
-  {
-    _id: 'fallback-1',
-    category: 'before-after',
-    title: 'Smile Designing',
-    imageUrl:
-      'https://picsum.photos/seed/smile1/900/600',
-  },
-  {
-    _id: 'fallback-2',
-    category: 'clinic',
-    title: 'Modern Operatory',
-    imageUrl:
-      'https://picsum.photos/seed/clinic1/900/600',
-  },
-  {
-    _id: 'fallback-3',
-    category: 'before-after',
-    title: 'Teeth Alignment',
-    imageUrl:
-      'https://picsum.photos/seed/teeth1/900/600',
-  },
-  {
-    _id: 'fallback-4',
-    category: 'clinic',
-    title: 'Clinic Ambience',
-    imageUrl:
-      'https://picsum.photos/seed/ambience1/900/600',
-  },
-  {
-    _id: 'fallback-5',
-    category: 'team',
-    title: 'Expert Team',
-    imageUrl:
-      'https://picsum.photos/seed/team1/900/600',
-  },
-]
+import { getDentalGalleryItems } from '../utils/galleryData'
 
 const tabs = [
   { id: 'all', label: 'All', filter: () => true },
@@ -62,7 +25,7 @@ export default function GalleryPage() {
       .catch(() => setItems([]))
   }, [])
 
-  const displayItems = useMemo(() => (items.length ? items : fallbackGallery), [items])
+  const displayItems = useMemo(() => getDentalGalleryItems(items), [items])
 
   const filtered = useMemo(() => {
     const matcher = tabs.find((item) => item.id === tab)?.filter || (() => true)

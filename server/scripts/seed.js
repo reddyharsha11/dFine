@@ -39,34 +39,32 @@ const SAMPLES = [
 
 const GALLERY_SEED = [
   {
-    title: 'Smile Designing',
-    imageUrl:
-      'https://images.unsplash.com/photo-1606811971618-4486e7c7d8b?w=900&q=80&auto=format&fit=crop',
-    category: 'clinic',
+    title: 'Smile Design Planning',
+    description: 'Close-up cosmetic smile planning and shade refinement.',
+    imageUrl: '/gallery/smile-design.svg',
+    category: 'before-after',
     sortOrder: 1,
   },
   {
-    title: 'Dental Treatments',
-    imageUrl:
-      'https://images.unsplash.com/photo-1588776814546-1ffcef47235e?w=800&q=80&auto=format&fit=crop',
+    title: 'Modern Dental Operatory',
+    description: 'A clean treatment room prepared for precise dental care.',
+    imageUrl: '/gallery/operatory.svg',
     category: 'clinic',
     sortOrder: 2,
   },
   {
-    title: 'Teeth Alignment',
-    imageUrl:
-      'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=900&q=80&auto=format&fit=crop',
+    title: 'Alignment Consultation',
+    description: 'Orthodontic review for aligners and bite correction.',
+    imageUrl: '/gallery/aligners.svg',
     category: 'before-after',
-    beforeImageUrl:
-      'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80&auto=format&fit=crop',
-    afterImageUrl:
-      'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80&auto=format&fit=crop',
+    beforeImageUrl: '/gallery/treatment-setup.svg',
+    afterImageUrl: '/gallery/whitening.svg',
     sortOrder: 3,
   },
   {
-    title: 'Dentures',
-    imageUrl:
-      'https://images.unsplash.com/photo-1559591935-cf7c9c4c9b8f?w=700&q=80&auto=format&fit=crop',
+    title: 'Dental Care Team',
+    description: 'Clinical support for calm, coordinated patient care.',
+    imageUrl: '/gallery/team.svg',
     category: 'team',
     sortOrder: 4,
   },

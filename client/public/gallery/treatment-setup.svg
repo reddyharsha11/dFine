@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Gentle treatment setup</title>
+  <desc id="desc">Dental mirror, scaler, gloves, and treatment tray arranged for a dental visit.</desc>
+  <rect width="1200" height="800" fill="#fbf9f1"/>
+  <rect x="120" y="130" width="960" height="540" rx="48" fill="#e7f3f0"/>
+  <rect x="210" y="230" width="780" height="340" rx="36" fill="#fff"/>
+  <path d="M330 450l330-170" stroke="#2f7b6e" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="300" cy="465" r="58" fill="none" stroke="#2f7b6e" stroke-width="22"/>
+  <path d="M725 290l155 170" stroke="#1a2e2a" stroke-width="22" stroke-linecap="round"/>
+  <path d="M870 460l-85 42" stroke="#1a2e2a" stroke-width="16" stroke-linecap="round"/>
+  <path d="M460 525h310" stroke="#e8643a" stroke-width="18" stroke-linecap="round"/>
+  <path d="M505 485h220" stroke="#BDDBD1" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="890" cy="285" r="54" fill="#fae8e0"/>
+  <path d="M850 285h80M890 245v80" stroke="#e8643a" stroke-width="14" stroke-linecap="round"/>
+  <text x="220" y="715" fill="#236358" font-family="Sora, Arial, sans-serif" font-size="42" font-weight="700">Prepared Treatment Tray</text>
+</svg>

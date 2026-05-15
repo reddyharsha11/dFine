@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Alignment consultation</title>
+  <desc id="desc">Clear aligner trays and orthodontic progress cards.</desc>
+  <rect width="1200" height="800" fill="#e7f3f0"/>
+  <circle cx="220" cy="170" r="120" fill="#fae8e0"/>
+  <circle cx="980" cy="620" r="180" fill="#fbf9f1"/>
+  <rect x="160" y="130" width="880" height="540" rx="44" fill="#fff"/>
+  <g fill="none" stroke="#2f7b6e" stroke-width="24" stroke-linecap="round">
+    <path d="M310 350c50-75 150-110 290-110s240 35 290 110"/>
+    <path d="M310 450c50 75 150 110 290 110s240-35 290-110"/>
+  </g>
+  <g fill="#fff" stroke="#BDDBD1" stroke-width="6">
+    <rect x="285" y="345" width="75" height="95" rx="24"/>
+    <rect x="375" y="320" width="75" height="120" rx="24"/>
+    <rect x="465" y="305" width="75" height="135" rx="24"/>
+    <rect x="555" y="300" width="75" height="140" rx="24"/>
+    <rect x="645" y="305" width="75" height="135" rx="24"/>
+    <rect x="735" y="320" width="75" height="120" rx="24"/>
+    <rect x="825" y="345" width="75" height="95" rx="24"/>
+  </g>
+  <path d="M295 510h610" stroke="#e8643a" stroke-width="12" stroke-linecap="round" stroke-dasharray="28 26"/>
+  <text x="250" y="620" fill="#236358" font-family="Sora, Arial, sans-serif" font-size="42" font-weight="700">Clear Aligner Review</text>
+</svg>

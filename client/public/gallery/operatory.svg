@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Modern dental operatory</title>
+  <desc id="desc">A clean modern dental treatment room with dental chair, lamp, and equipment.</desc>
+  <rect width="1200" height="800" fill="#fbf9f1"/>
+  <rect y="0" width="1200" height="320" fill="#e7f3f0"/>
+  <rect x="120" y="130" width="960" height="540" rx="46" fill="#fff"/>
+  <path d="M230 565h650" stroke="#BDDBD1" stroke-width="16" stroke-linecap="round"/>
+  <path d="M360 455h370c65 0 120 45 133 105H300c10-61 30-105 60-105Z" fill="#2f7b6e"/>
+  <path d="M455 375h250c48 0 88 36 94 83H390c9-47 30-83 65-83Z" fill="#236358"/>
+  <rect x="360" y="542" width="540" height="56" rx="28" fill="#1a2e2a"/>
+  <rect x="498" y="595" width="34" height="90" rx="17" fill="#4a6b62"/>
+  <rect x="738" y="595" width="34" height="90" rx="17" fill="#4a6b62"/>
+  <path d="M720 230c85 0 155 70 155 155" fill="none" stroke="#e8643a" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="880" cy="390" r="58" fill="#fae8e0" stroke="#e8643a" stroke-width="16"/>
+  <rect x="235" y="215" width="210" height="110" rx="22" fill="#e7f3f0"/>
+  <rect x="268" y="250" width="145" height="18" rx="9" fill="#2f7b6e"/>
+  <rect x="268" y="285" width="95" height="18" rx="9" fill="#BDDBD1"/>
+  <text x="200" y="735" fill="#236358" font-family="Sora, Arial, sans-serif" font-size="44" font-weight="700">Modern Operatory</text>
+</svg>

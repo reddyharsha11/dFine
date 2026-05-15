@@ -1,34 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../utils/api'
+import { getDentalGalleryItems } from '../../utils/galleryData'
 import { AnimatedSection } from '../ui/AnimatedSection'
-
-const fallbackGallery = [
-  {
-    _id: 'fallback-1',
-    title: 'Smile Designing',
-    imageUrl:
-      'https://picsum.photos/seed/smile1/900/600',
-  },
-  {
-    _id: 'fallback-2',
-    title: 'Modern Operatory',
-    imageUrl:
-      'https://picsum.photos/seed/clinic1/900/600',
-  },
-  {
-    _id: 'fallback-3',
-    title: 'Teeth Alignment',
-    imageUrl:
-      'https://picsum.photos/seed/teeth1/900/600',
-  },
-  {
-    _id: 'fallback-4',
-    title: 'Clinic Ambience',
-    imageUrl:
-      'https://picsum.photos/seed/ambience1/900/600',
-  },
-]
 
 export function GalleryPreview() {
   const [items, setItems] = useState([])
@@ -40,7 +14,7 @@ export function GalleryPreview() {
       .catch(() => setItems([]))
   }, [])
 
-  const displayItems = useMemo(() => (items.length ? items : fallbackGallery), [items])
+  const displayItems = useMemo(() => getDentalGalleryItems(items, 4), [items])
 
   return (
     <AnimatedSection className="bg-surface-soft py-16">

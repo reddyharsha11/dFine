@@ -62,7 +62,7 @@ export default function TestimonialsPage() {
       const sourceMatch = sourceFilter === 'All' || review.source === sourceFilter
       return starMatch && sourceMatch
     })
-  }, [reviews, sourceFilter, starFilter])
+  }, [displayReviews, sourceFilter, starFilter])
 
   const visible = filtered.slice(0, visibleCount)
 

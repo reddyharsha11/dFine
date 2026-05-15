@@ -1,4 +1,5 @@
 import { CLINIC, MAPS_DIRECTIONS_URL } from './constants'
+import { DENTAL_GALLERY_IMAGES } from './galleryData'
 
 export const LOCAL_ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || 'admin@dfinedental.local'
 export const LOCAL_ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'Dental@12345'
@@ -21,7 +22,7 @@ export function getFallbackDashboardData() {
     stats: { pending: 0, completedThisMonth: 0, bookingsThisMonth: 0 },
     appointments: [],
     reviews: [],
-    gallery: [],
+    gallery: DENTAL_GALLERY_IMAGES,
     messages: [],
     settings: {
       clinicName: CLINIC.name,

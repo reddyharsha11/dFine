@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Whitening review</title>
+  <desc id="desc">A bright tooth icon with sparkle marks and shade guide cards.</desc>
+  <rect width="1200" height="800" fill="#1a2e2a"/>
+  <circle cx="230" cy="180" r="160" fill="#2f7b6e" opacity=".55"/>
+  <circle cx="970" cy="640" r="190" fill="#e8643a" opacity=".24"/>
+  <path d="M445 170c58 0 92 38 155 38s97-38 155-38c96 0 150 87 122 201l-60 238c-18 72-106 88-148 26l-34-50c-17-25-53-25-70 0l-34 50c-42 62-130 46-148-26l-60-238c-28-114 26-201 122-201Z" fill="#fff"/>
+  <path d="M405 358c66 34 130 51 195 51s129-17 195-51" fill="none" stroke="#e8643a" stroke-width="18" stroke-linecap="round"/>
+  <g stroke="#fae8e0" stroke-width="15" stroke-linecap="round">
+    <path d="M250 250h80M290 210v80"/>
+    <path d="M890 240h110M945 185v110"/>
+    <path d="M855 520h70M890 485v70"/>
+  </g>
+  <rect x="210" y="575" width="250" height="48" rx="24" fill="#e7f3f0"/>
+  <rect x="740" y="575" width="250" height="48" rx="24" fill="#fae8e0"/>
+  <text x="360" y="715" fill="#fff" font-family="Sora, Arial, sans-serif" font-size="46" font-weight="700">Whitening Review</text>
+</svg>
